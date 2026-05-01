@@ -62,9 +62,8 @@ if (startBtn) {
     // Hide the initial menu
     if (preStartScreen) preStartScreen.style.display = "none";
 
-    // Play the splash video and ambient music explicitly
+    // Play the splash video explicitly
     if (bgVideo) bgVideo.play().catch(e => console.log("Auto-play blocked", e));
-    playAmbientMusic();
   });
 }
 
@@ -86,13 +85,15 @@ if (bgVideo) {
     if (loadingScreen) {
       loadingScreen.style.display = "flex";
 
-      // Delay explicitly for 6 seconds
+      // Delay explicitly for 8 seconds
       setTimeout(() => {
         window.gameIsReady = true;
         loadingScreen.style.display = "none"; // Automatically show in-game view
-      }, 6000);
+        playAmbientMusic(); // Play music only at in-game entry
+      }, 8000);
     } else {
       window.gameIsReady = true;
+      playAmbientMusic();
     }
   });
 }
