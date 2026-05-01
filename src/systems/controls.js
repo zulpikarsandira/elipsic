@@ -13,24 +13,24 @@ function setupControls(camera, playerVelocity, throwBall, playerDirection) {
   );
 
   document.body.addEventListener("click", () => {
-    // Prevent interaction until loading finishes
-    if (!window.gameIsReady) return;
-
-    // Pointer lock for Desktop
-    if (document.body.requestPointerLock) {
-      try { document.body.requestPointerLock(); } catch (e) { }
-    }
-
-    // Fullscreen for Mobile & Desktop
+    // 1) Allow Fullscreen expansion anytime (Mobile / Desktop)
     const docEl = document.documentElement;
     const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
     if (requestFullScreen) {
       requestFullScreen.call(docEl).catch((err) => console.log(err));
     }
 
-    // Auto-Landscape for Mobile
+    // 2) Allow Auto-Landscape rotation anytime (Mobile)
     if (window.screen && window.screen.orientation && window.screen.orientation.lock) {
       window.screen.orientation.lock("landscape").catch((err) => console.log(err));
+    }
+
+    // 3) Prevent interaction/controls until loading finishes
+    if (!window.gameIsReady) return;
+
+    // 4) Pointer lock for Desktop (Game entry)
+    if (document.body.requestPointerLock) {
+      try { document.body.requestPointerLock(); } catch (e) { }
     }
   });
 
