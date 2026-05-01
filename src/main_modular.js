@@ -52,6 +52,36 @@ loadWorld(scene, worldOctree);
 // Add Background Sound Effects
 addBgMusic();
 
+// Splash screen logic
+const splashScreen = document.getElementById("splash-screen");
+const loadingScreen = document.getElementById("loading-screen");
+
+document.addEventListener("pointerlockchange", () => {
+  if (document.pointerLockElement === document.body) {
+    if (splashScreen) splashScreen.style.display = "none";
+    if (loadingScreen) loadingScreen.style.display = "none";
+  } else {
+    // Optional: show a pause menu here if needed
+  }
+});
+
+const bgVideo = document.getElementById("bg-video");
+if (bgVideo) {
+  bgVideo.addEventListener("ended", () => {
+    // Hide splash screen video
+    if (splashScreen) splashScreen.style.display = "none";
+    // Show loading screen
+    if (loadingScreen) {
+      loadingScreen.style.display = "flex";
+
+      // Provide a small simulated loading time or just wait for click
+      setTimeout(() => {
+        // Users can now click quietly to start
+      }, 3000);
+    }
+  });
+}
+
 // Animation Loop
 
 function animate() {

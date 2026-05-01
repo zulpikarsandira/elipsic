@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FPS | Organized</title>
-    <!-- JS -->
-    <script type="module" src="./src/main_modular.js"></script>
-    <link rel="stylesheet" href="./styles/style.css" />
-  </head>
-  <body>
-    <!-- <h1>Test</h1> -->
-    <div id="container"></div>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FPS | Organized</title>
+  <!-- JS -->
+  <script type="module" src="./src/main_modular.js"></script>
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+
+<body>
+  <div id="splash-screen">
+    <video autoplay muted id="bg-video">
+      <source src="/images/2026 (1).mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <div id="loading-screen" style="display: none;">
+    <img src="/images/2026.png" id="bg-loading" alt="" />
+    <div class="loading">
+      <svg width="64px" height="48px">
+        <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+        <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+      </svg>
+    </div>
+  </div>
+  <!-- <h1>Test</h1> -->
+  <div id="container"></div>
+</body>
+
 </html>
