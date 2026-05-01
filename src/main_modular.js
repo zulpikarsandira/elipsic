@@ -55,6 +55,7 @@ addBgMusic();
 // Splash screen logic
 const splashScreen = document.getElementById("splash-screen");
 const loadingScreen = document.getElementById("loading-screen");
+window.gameIsReady = false;
 
 document.addEventListener("pointerlockchange", () => {
   if (document.pointerLockElement === document.body) {
@@ -74,10 +75,13 @@ if (bgVideo) {
     if (loadingScreen) {
       loadingScreen.style.display = "flex";
 
-      // Provide a small simulated loading time or just wait for click
+      // Delay explicitly for 6 seconds
       setTimeout(() => {
-        // Users can now click quietly to start
-      }, 3000);
+        window.gameIsReady = true;
+        loadingScreen.style.display = "none"; // Automatically show in-game view
+      }, 6000);
+    } else {
+      window.gameIsReady = true;
     }
   });
 }

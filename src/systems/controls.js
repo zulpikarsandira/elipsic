@@ -13,6 +13,9 @@ function setupControls(camera, playerVelocity, throwBall, playerDirection) {
   );
 
   document.body.addEventListener("click", () => {
+    // Prevent interaction until loading finishes
+    if (!window.gameIsReady) return;
+
     // Pointer lock for Desktop
     if (document.body.requestPointerLock) {
       try { document.body.requestPointerLock(); } catch (e) { }
