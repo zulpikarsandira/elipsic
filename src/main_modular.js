@@ -5,11 +5,10 @@ import { createScene } from "./components/scene";
 import { createCamera, gunMixer } from "./components/camera";
 import { createLights } from "./components/lights";
 import { loadWorld } from "./components/world";
-import { addBgMusic } from "./components/music";
+import { playAmbientMusic } from "./components/music";
 
 // Systems
 import { createRenderer } from "./systems/renderer";
-import { createStats } from "./systems/stats";
 import { Resizer } from "./systems/resizer";
 
 // Physics & Controls
@@ -25,8 +24,6 @@ scene.add(fillLight1, directionalLight);
 const container = document.getElementById("container");
 const renderer = createRenderer(animate);
 container.appendChild(renderer.domElement);
-const stats = createStats();
-container.appendChild(stats.domElement);
 
 // Initialize Physics & Controls
 const {
@@ -49,8 +46,7 @@ const applyControls = setupControls(
 // Load World
 loadWorld(scene, worldOctree);
 
-// Add Background Sound Effects
-addBgMusic();
+
 
 // Splash screen logic
 const preStartScreen = document.getElementById("pre-start-screen");
@@ -66,8 +62,9 @@ if (startBtn) {
     // Hide the initial menu
     if (preStartScreen) preStartScreen.style.display = "none";
 
-    // Play the splash video explicitly
+    // Play the splash video and ambient music explicitly
     if (bgVideo) bgVideo.play().catch(e => console.log("Auto-play blocked", e));
+    playAmbientMusic();
   });
 }
 
@@ -115,7 +112,6 @@ function animate() {
   if (gunMixer) gunMixer.update(deltaTime);
 
   renderer.render(scene, camera);
-  stats.update();
 }
 
 // Resizer
