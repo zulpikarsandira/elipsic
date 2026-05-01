@@ -11,8 +11,16 @@
 </head>
 
 <body>
+  <div id="pre-start-screen"
+    style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 2000; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+    <h1 style="color: white; font-family: poppins, sans-serif; margin-bottom: 20px; font-size: 3rem;">Elipsic FPS</h1>
+    <button id="start-btn"
+      style="padding: 15px 40px; font-size: 1.5rem; cursor: pointer; border-radius: 10px; border: none; background: #ff4d4f; color: white; font-weight: bold; box-shadow: 0 4px 10px rgba(255, 77, 79, 0.4); transition: transform 0.2s;">ENTER
+      WIDESCREEN</button>
+  </div>
+
   <div id="splash-screen">
-    <video autoplay muted id="bg-video">
+    <video muted id="bg-video">
       <source src="/images/2026 (1).mp4" type="video/mp4" />
     </video>
   </div>

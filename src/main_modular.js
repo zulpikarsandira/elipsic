@@ -53,12 +53,27 @@ loadWorld(scene, worldOctree);
 addBgMusic();
 
 // Splash screen logic
+const preStartScreen = document.getElementById("pre-start-screen");
+const startBtn = document.getElementById("start-btn");
 const splashScreen = document.getElementById("splash-screen");
 const loadingScreen = document.getElementById("loading-screen");
+const bgVideo = document.getElementById("bg-video");
 window.gameIsReady = false;
+
+// Handle the very first explicit start click
+if (startBtn) {
+  startBtn.addEventListener("click", () => {
+    // Hide the initial menu
+    if (preStartScreen) preStartScreen.style.display = "none";
+
+    // Play the splash video explicitly
+    if (bgVideo) bgVideo.play().catch(e => console.log("Auto-play blocked", e));
+  });
+}
 
 document.addEventListener("pointerlockchange", () => {
   if (document.pointerLockElement === document.body) {
+    if (preStartScreen) preStartScreen.style.display = "none";
     if (splashScreen) splashScreen.style.display = "none";
     if (loadingScreen) loadingScreen.style.display = "none";
   } else {
@@ -66,7 +81,6 @@ document.addEventListener("pointerlockchange", () => {
   }
 });
 
-const bgVideo = document.getElementById("bg-video");
 if (bgVideo) {
   bgVideo.addEventListener("ended", () => {
     // Hide splash screen video
