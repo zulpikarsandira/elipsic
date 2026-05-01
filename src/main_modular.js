@@ -89,10 +89,14 @@ if (bgVideo) {
       setTimeout(() => {
         window.gameIsReady = true;
         loadingScreen.style.display = "none"; // Automatically show in-game view
+        const mobileControls = document.getElementById("mobile-controls");
+        if (mobileControls) mobileControls.style.display = "block";
         playAmbientMusic(); // Play music only at in-game entry
       }, 8000);
     } else {
       window.gameIsReady = true;
+      const mobileControls = document.getElementById("mobile-controls");
+      if (mobileControls) mobileControls.style.display = "block";
       playAmbientMusic();
     }
   });

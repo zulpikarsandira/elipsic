@@ -119,3 +119,83 @@ canvas {
     stroke-dashoffset: 0;
   }
 }
+
+/* Mobile Controls UI */
+#mobile-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  pointer-events: none;
+}
+
+#joystick-zone {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  width: 150px;
+  height: 150px;
+  pointer-events: auto;
+}
+
+#joystick-base {
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#joystick-nipple {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  position: absolute;
+}
+
+#aim-zone {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 100vh;
+  pointer-events: auto;
+}
+
+.action-buttons {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  pointer-events: auto;
+  display: flex;
+  gap: 20px;
+}
+
+.action-buttons button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(255, 77, 79, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  backdrop-filter: blur(5px);
+}
+
+@media (pointer: fine) {
+  #mobile-controls {
+    display: none !important;
+    /* Hide thoroughly on desktop setups */
+  }
+}
