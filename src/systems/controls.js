@@ -12,9 +12,24 @@ function setupControls(camera, playerVelocity, throwBall, playerDirection) {
     (event) => (keyStates[event.code] = false)
   );
 
-  document.body.addEventListener("click", () =>
-    document.body.requestPointerLock()
-  );
+  document.body.addEventListener("click", () => {
+    // Pointer lock for Desktop
+    if (document.body.requestPointerLock) {
+      try { document.body.requestPointerLock(); } catch (e) { }
+    }
+
+    // Fullscreen for Mobile & Desktop
+    const docEl = document.documentElement;
+    const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+    if (requestFullScreen) {
+      requestFullScreen.call(docEl).catch((err) => console.log(err));
+    }
+
+    // Auto-Landscape for Mobile
+    if (window.screen && window.screen.orientation && window.screen.orientation.lock) {
+      window.screen.orientation.lock("landscape").catch((err) => console.log(err));
+    }
+  });
 
   // ✅ Pass `playerDirection` correctly
   document.body.addEventListener("mousedown", () => {
